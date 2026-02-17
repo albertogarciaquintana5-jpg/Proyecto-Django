@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}Centro Escolar{%endblock title%}</title>
+    {%block css%}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    {%endblock css%}
+</head>
+<body>
+    {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/inicio/">Centro Escolar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/inicio/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/lista-niños/">Niños</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/lista-padres/">Padres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/lista-clases/">Clases</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/">Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endblock navbar %}
+
+    {% block content %}{% endblock content %}
+
+    {%block js%}
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {%endblock js%}
+</body>
+</html>

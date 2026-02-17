@@ -1,0 +1,53 @@
+{% extends 'index.html'%}
+{%block title%} Lista de Niños {%endblock title%}
+
+{%block content%}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between mb-3">
+        <h1>Listado de Niños</h1>
+        <a href="/crear-niño/" class="btn btn-primary">Nuevo Niño</a>
+    </div>
+    
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Nacimiento</th>
+                <th>Nota Media</th>
+                <th>Padres</th>
+                <th>Clase</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for child in childs %}
+            <tr>
+                <td>{{child.name}}</td>
+                <td>{{child.last_name}}</td>
+                <td>{{child.age}}</td>
+                <td>{{child.average}}</td>
+                <td>
+                    {% for padre in child.father.all %}
+                    {{padre.name}} {{padre.last_name}}{% if not forloop.last %}, {% endif %}
+                    {% empty %}-{% endfor %}
+                </td>
+                <td>
+                    {% for clase in child.school.all %}
+                    {{clase.clase}}{% if not forloop.last %}, {% endif %}
+                    {% empty %}-{% endfor %}
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="/editar-niño/{{child.id}}/">Editar</a>
+                    <a class="btn btn-sm btn-danger" href="/borrar-niño/{{child.id}}/">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="text-center">No hay niños registrados</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{%endblock content%}

@@ -1,0 +1,27 @@
+{% extends 'index.html'%}
+
+{% block title %}Eliminar {{ tipo }}{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h1 class="text-danger mb-4">Eliminar {{ tipo }}</h1>
+            <div class="alert alert-danger">
+                ¡Atención! Esta acción no se puede deshacer.
+            </div>
+            <div class="card mb-3">
+                <div class="card-body text-center">
+                    <p>Vas a eliminar:</p>
+                    <h4>{{ nombre }}</h4>
+                </div>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+                <a href="/inicio/" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
